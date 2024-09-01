@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  {% if tasks %}
+  <div class="row">
+    {% for task in tasks %}
+    <div class="col-md-4">
+      <div class="card bg-dark text-light mb-3">
+        <div class="card-body">
+          <a href="{% url 'task_detail' task.id %}" class="text-decoration-none text-light">
+            <h5 class="card-title">
+              {% if task.important %}
+              <strong>{{ task.title }}</strong>
+              {% else %}
+              {{ task.title }}
+              {% endif %}
+            </h5>
+            <p class="card-text">{{ task.description }}</p>
+            <p class="card-text">
+              {% if task.done %}
+              <small>
+                <i class="fas fa-check-circle text-success"></i> Completada
+              </small><br>
+              <small>Creada: {{ task.created }}</small>
+              {% else %}
+              <small>
+                <i class="fas fa-clock text-warning"></i> Pendiente
+              </small><br>
+              <small>Creada: {{ task.created }}</small>
+              {% endif %}
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+    <div class="card bg-dark text-light p-4 text-center" style="max-width: 400px;">
+      <h3>No hay tareas creadas</h3>
+      <p>¡Anímate a crear una tarea!</p>
+      <a href="{% url 'create_task' %}" class="btn btn-primary">
+        <i class="fas fa-plus-circle"></i> Crear Tarea
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

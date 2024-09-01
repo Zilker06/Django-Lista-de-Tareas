@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card bg-dark text-light">
+    <div class="card-header text-center">
+      <h2>Crear Nueva Tarea</h2>
+    </div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+          <label for="title" class="form-label">Título</label>
+          <input type="text" name="title" id="title" class="form-control" placeholder="Ingresa el título de la tarea">
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Descripción</label>
+          <textarea name="description" id="description" class="form-control" rows="4" placeholder="Describe la tarea"></textarea>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" name="done" id="done" class="form-check-input">
+          <label for="done" class="form-check-label">Completada</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Guardar Tarea</button>
+      </form>
+    </div>
+</div>
+{% endblock %}

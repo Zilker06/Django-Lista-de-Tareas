@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-start" style="min-height: 100vh; padding-top: 50px;">
+    <div class="card bg-dark text-light p-4 w-100" style="max-width: 600px;">
+        <h2 class="card-title text-center">Lista de Tareas</h2>
+        <p class="card-text">
+            Aquí puedes gestionar tus tareas, marcarlas como completadas, filtrarlas, y mucho más.
+        </p>
+        {% if user.is_authenticated %}
+        <a class="navbar-brand text-center" href="/tasks/"><u>Revisa tus tareas</u></a>
+        {% else %}
+        <a class="navbar-brand text-center" href="/signup/"><u>Registrate aqui</u></a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
